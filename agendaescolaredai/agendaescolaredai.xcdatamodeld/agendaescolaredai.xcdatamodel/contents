@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="24B91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Alumno" representedClassName=".Alumno" syncable="YES" codeGenerationType="class">
+        <attribute name="fechaNacimiento" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imagen" optional="YES" attributeType="String"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <relationship name="aula" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Aula" inverseName="alumnos" inverseEntity="Aula"/>
+        <relationship name="centro" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Centro" inverseName="alumnos" inverseEntity="Centro"/>
+        <relationship name="registrosDiarios" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RegistroDiario" inverseName="alumno" inverseEntity="RegistroDiario"/>
+        <relationship name="tutor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="alumnosAsignados" inverseEntity="Usuario"/>
+    </entity>
+    <entity name="Aula" representedClassName=".Aula" syncable="YES" codeGenerationType="class">
+        <attribute name="capacidadMaxima" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="curso" optional="YES" attributeType="String"/>
+        <attribute name="edadMaxima" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="edadMinima" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imagen" optional="YES" attributeType="String"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <relationship name="alumnos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alumno" inverseName="aula" inverseEntity="Alumno"/>
+        <relationship name="centro" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Centro" inverseName="aulas" inverseEntity="Centro"/>
+        <relationship name="profesores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Usuario" inverseName="aulas" inverseEntity="Usuario"/>
+    </entity>
+    <entity name="Centro" representedClassName=".Centro" syncable="YES" codeGenerationType="class">
+        <attribute name="descripcion" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="telefono" optional="YES" attributeType="String"/>
+        <attribute name="ubicacion" optional="YES" attributeType="String"/>
+        <relationship name="alumnos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alumno" inverseName="centro" inverseEntity="Alumno"/>
+        <relationship name="aulas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Aula" inverseName="centro" inverseEntity="Aula"/>
+        <relationship name="noticias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Noticia" inverseName="centro" inverseEntity="Noticia"/>
+    </entity>
+    <entity name="Foto" representedClassName=".Foto" syncable="YES" codeGenerationType="class">
+        <attribute name="fecha" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imagen" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="profesor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="fotos" inverseEntity="Usuario"/>
+    </entity>
+    <entity name="Mensaje" representedClassName=".Mensaje" syncable="YES" codeGenerationType="class">
+        <attribute name="contenido" optional="YES" attributeType="String"/>
+        <attribute name="fecha" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="leido" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="destinatario" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="mensajesRecibidos" inverseEntity="Usuario"/>
+        <relationship name="remitente" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="mensajesEnviados" inverseEntity="Usuario"/>
+    </entity>
+    <entity name="Menu" representedClassName="Menu" syncable="YES" codeGenerationType="class">
+        <attribute name="desayuno" optional="YES" attributeType="String"/>
+        <attribute name="fecha" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="postre" optional="YES" attributeType="String"/>
+        <attribute name="primerPlato" optional="YES" attributeType="String"/>
+        <attribute name="segundoPlato" optional="YES" attributeType="String"/>
+        <attribute name="tentempie" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Noticia" representedClassName="Noticia" syncable="YES" codeGenerationType="class">
+        <attribute name="contenido" optional="YES" attributeType="String"/>
+        <attribute name="fechaPublicacion" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="titulo" optional="YES" attributeType="String"/>
+        <relationship name="autor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="noticias" inverseEntity="Usuario"/>
+        <relationship name="centro" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Centro" inverseName="noticias" inverseEntity="Centro"/>
+    </entity>
+    <entity name="RegistroDiario" representedClassName=".RegistroDiario" syncable="YES" codeGenerationType="class">
+        <attribute name="comentarios" optional="YES" attributeType="String"/>
+        <attribute name="desayuno" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="fecha" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="panalesRestantes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="postre" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="primerPlato" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="segundoPlato" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="siesta" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="siestaFin" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="siestaInicio" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="tentempie" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="toallitasRestantes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="alumno" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Alumno" inverseName="registrosDiarios" inverseEntity="Alumno"/>
+    </entity>
+    <entity name="Usuario" representedClassName=".Usuario" syncable="YES" codeGenerationType="class">
+        <attribute name="contrasena" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="rol" optional="YES" attributeType="String"/>
+        <relationship name="alumnosAsignados" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alumno" inverseName="tutor" inverseEntity="Alumno"/>
+        <relationship name="aulas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Aula" inverseName="profesores" inverseEntity="Aula"/>
+        <relationship name="fotos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Foto" inverseName="profesor" inverseEntity="Foto"/>
+        <relationship name="mensajesEnviados" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mensaje" inverseName="remitente" inverseEntity="Mensaje"/>
+        <relationship name="mensajesRecibidos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mensaje" inverseName="destinatario" inverseEntity="Mensaje"/>
+        <relationship name="noticias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Noticia" inverseName="autor" inverseEntity="Noticia"/>
+    </entity>
+</model>

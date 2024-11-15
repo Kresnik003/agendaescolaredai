@@ -1,0 +1,41 @@
+{
+  "configurations" : [
+    {
+      "id" : "63A69199-75CD-48EE-ACD6-A2F410D168D6",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "areLocalizationScreenshotsEnabled" : true,
+    "language" : "es",
+    "region" : "ES",
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:agendaescolaredai.xcodeproj",
+      "identifier" : "BEA48B282CE7FA7200374118",
+      "name" : "agendaescolaredai"
+    },
+    "uiTestingScreenshotsLifetime" : "keepAlways"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:agendaescolaredai.xcodeproj",
+        "identifier" : "BEA48B3F2CE7FA7400374118",
+        "name" : "agendaescolaredaiTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:agendaescolaredai.xcodeproj",
+        "identifier" : "BEA48B492CE7FA7400374118",
+        "name" : "agendaescolaredaiUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

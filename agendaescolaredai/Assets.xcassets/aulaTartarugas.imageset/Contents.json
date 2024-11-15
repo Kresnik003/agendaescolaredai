@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "tartarugas.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
